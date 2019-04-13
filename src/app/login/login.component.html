@@ -1,0 +1,44 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <!-- <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+            </mat-form-field> -->
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" >
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getPosts($event.option.value)' >
+                  <mat-option *ngFor="let state of filteredStates | async" [value]="state.uname"   (removed)="remove(fruit)">
+                    <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
+                    <span>{{state.uname}}</span>
+                    <small style="float:right;color: red" (click)="removethis(state.uname)">X</small>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+              
+          </td>
+        </tr>
+        <tr>
+        <td><mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+        </mat-form-field></td>
+      </tr></table>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="login()" color="primary">Login</button>
+  </mat-card-actions>
+
+  <mat-card-actions>
+    <a [routerLink]="['/registration']" class="btn btn-link">Register</a>
+  </mat-card-actions>
+
+</mat-card>
